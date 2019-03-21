@@ -45,21 +45,21 @@ prompt_ryan_main() {
   # new segment.
   prompt_ryan_segment() {
     print -n "%K{${1}}"
-    [[ -n ${prompt_ryan_bg} ]] && print -n "%F{${prompt_ryan_bg}}"
+    [[ -n ${prompt_ryan_bg} ]] && print -n "%F{${prompt_ryan_bg}} "
     print -n "${2}"
     prompt_ryan_bg=${1}
   }
 
   prompt_ryan_standout_segment() {
     print -n "%S%F{${1}}"
-    [[ -n ${prompt_ryan_bg} ]] && print -n "%K{${prompt_ryan_bg}}%k"
+    [[ -n ${prompt_ryan_bg} ]] && print -n "%K{${prompt_ryan_bg}} %k"
     print -n "${2}%s"
     prompt_ryan_bg=${1}
   }
 
   # End the prompt, closing last segment.
   prompt_ryan_end() {
-    print -n "%k%F{${prompt_ryan_bg}}%f "
+    print -n "%k%F{${prompt_ryan_bg}} %f "
   }
 
   ### Prompt components
@@ -114,8 +114,8 @@ prompt_ryan_setup() {
   local prompt_ryan_color3=${3:-green}
   local prompt_ryan_color4=${4:-yellow}
 
-  zstyle ':zim:git-info:branch' format ' %b'
-  zstyle ':zim:git-info:commit' format '➦ %c'
+  zstyle ':zim:git-info:branch' format '%b'
+  zstyle ':zim:git-info:commit' format '%c'
   zstyle ':zim:git-info:action' format ' (%s)'
   zstyle ':zim:git-info:clean' format ${prompt_ryan_color3}
   zstyle ':zim:git-info:dirty' format ${prompt_ryan_color4}
