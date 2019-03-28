@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-ln -s . ${ZDOTDIR:-${HOME}}/.zim
+ln -s $PWD/zimfw ${ZDOTDIR:-${HOME}}/.zim
 
 for template_file in ${ZDOTDIR:-${HOME}}/.zim/templates/*; do
   user_file="${ZDOTDIR:-${HOME}}/.${template_file:t}"
