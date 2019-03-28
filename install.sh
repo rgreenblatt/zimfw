@@ -5,7 +5,7 @@ git submodule init
 git submodule update
 cd ..
 
-ln -s $PWD/zimfw ${ZDOTDIR:-${HOME}}/.zim
+ln -sfn $PWD/zimfw ${ZDOTDIR:-${HOME}}/.zim
 
 for template_file in ${ZDOTDIR:-${HOME}}/.zim/templates/*; do
   user_file="${ZDOTDIR:-${HOME}}/.${template_file:t}"
