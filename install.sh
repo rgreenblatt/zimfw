@@ -1,7 +1,9 @@
 #!/bin/zsh
 
+cd zimfw
 git submodule init
 git submodule update
+cd ..
 
 ln -s $PWD/zimfw ${ZDOTDIR:-${HOME}}/.zim
 
