@@ -1,5 +1,8 @@
 #!/bin/zsh
 
+git submodule init
+git submodule update
+
 ln -s $PWD/zimfw ${ZDOTDIR:-${HOME}}/.zim
 
 for template_file in ${ZDOTDIR:-${HOME}}/.zim/templates/*; do
