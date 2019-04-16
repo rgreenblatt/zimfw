@@ -33,8 +33,9 @@ EOH
 
 prompt_ryan_main() {
   local prompt_ryan_retval=${?}
-  local prompt_ryan_color1=${1:-black}
-  local prompt_ryan_color2=${2:-cyan}
+  local prompt_ryan_color1=${1:-red}
+  local prompt_ryan_color2=${1:-black}
+  local prompt_ryan_color3=${2:-cyan}
 
   ### Segment drawing
   # Utility functions to make it easy and re-usable to draw segmented prompts.
@@ -67,7 +68,7 @@ prompt_ryan_main() {
   # be shown.
 
   # Status: Was there an error? Am I root? Are there background jobs? Ranger
-  # spawned shell? Who and where am I (user@hostname)?
+  # spawned shell?
   prompt_ryan_status() {
     local segment=''
     (( prompt_ryan_retval )) && segment+=' %F{red}✘'
@@ -78,13 +79,19 @@ prompt_ryan_main() {
     #    segment+=" %F{%(!.yellow.default)}${USER}@%m"
     # fi
     if [[ -n ${segment} ]]; then
-      prompt_ryan_segment ${prompt_ryan_color1} "${segment} "
+      prompt_ryan_segment ${prompt_ryan_color2} "${segment} "
     fi
+  }
+
+  # Env Name: if the ZSH_PROMPT_PREFIX environment variable is defined add it
+  # to the start
+  prompt_ryan_env() {
+    prompt_ryan_standout_segment ${prompt_ryan_color1} "${ZSH_PROMPT_PREFIX}"
   }
 
   # Pwd: current working directory.
   prompt_ryan_pwd() {
-    prompt_ryan_standout_segment ${prompt_ryan_color2} " $(short_pwd) "
+    prompt_ryan_standout_segment ${prompt_ryan_color3} " $(short_pwd) "
   }
 
   # Git: branch/detached head, dirty status.
@@ -97,6 +104,7 @@ prompt_ryan_main() {
   }
 
   prompt_ryan_status
+  prompt_ryan_env
   prompt_ryan_pwd
   prompt_ryan_git
   prompt_ryan_end
