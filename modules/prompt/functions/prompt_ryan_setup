@@ -24,18 +24,13 @@ This prompt is color-scheme-able. You can customize it using:
 
 where the parameters are the background colors for each segment. The default
 values are black, cyan, green, and yellow.
-
-In order for this prompt to render correctly, a font with Powerline symbols is
-required. A simple way to install a font with Powerline symbols is to follow
-the instructions here: https://github.com/powerline/fonts#installation
 EOH
 }
 
 prompt_ryan_main() {
   local prompt_ryan_retval=${?}
-  local prompt_ryan_color1=${1:-red}
-  local prompt_ryan_color2=${1:-black}
-  local prompt_ryan_color3=${2:-cyan}
+  local prompt_ryan_color1=${1:-black}
+  local prompt_ryan_color2=${2:-cyan}
 
   ### Segment drawing
   # Utility functions to make it easy and re-usable to draw segmented prompts.
@@ -79,19 +74,19 @@ prompt_ryan_main() {
     #    segment+=" %F{%(!.yellow.default)}${USER}@%m"
     # fi
     if [[ -n ${segment} ]]; then
-      prompt_ryan_segment ${prompt_ryan_color2} "${segment} "
+      prompt_ryan_segment ${prompt_ryan_color1} "${segment} "
     fi
   }
 
   # Env Name: if the ZSH_PROMPT_PREFIX environment variable is defined add it
   # to the start
   prompt_ryan_env() {
-    prompt_ryan_standout_segment ${prompt_ryan_color1} "${ZSH_PROMPT_PREFIX}"
+    prompt_ryan_standout_segment "red" "${ZSH_PROMPT_PREFIX}"
   }
 
   # Pwd: current working directory.
   prompt_ryan_pwd() {
-    prompt_ryan_standout_segment ${prompt_ryan_color3} " $(short_pwd) "
+    prompt_ryan_standout_segment ${prompt_ryan_color2} " $(short_pwd) "
   }
 
   # Git: branch/detached head, dirty status.
