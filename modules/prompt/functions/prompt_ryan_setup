@@ -81,7 +81,9 @@ prompt_ryan_main() {
   # Env Name: if the ZSH_PROMPT_PREFIX environment variable is defined add it
   # to the start
   prompt_ryan_env() {
-    prompt_ryan_standout_segment "red" "${ZSH_PROMPT_PREFIX}"
+    if [[ -n ${ZSH_PROMPT_PREFIX} ]]; then
+      prompt_ryan_standout_segment "red" "${ZSH_PROMPT_PREFIX}"
+    fi
   }
 
   # Pwd: current working directory.
