@@ -67,7 +67,7 @@ prompt_ryan_main() {
   prompt_ryan_status() {
     local segment=''
     (( prompt_ryan_retval )) && segment+=' %F{red}✘'
-    (( UID == 0 )) && segment+=' %F{yellow}⚡'
+    (( UID == 0 )) && [ -z "$NO_ROOT_STATUSLINE" ] && segment+=' %F{yellow}⚡'
     (( $(jobs -l | wc -l) )) && segment+=' %F{cyan}⚙'
     (( RANGER_LEVEL )) && segment+=' %F{cyan}r'
     # if [[ ${USER} != ${DEFAULT_USER} || -n ${SSH_CLIENT} ]]; then
