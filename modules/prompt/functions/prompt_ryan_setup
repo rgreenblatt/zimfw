@@ -64,6 +64,17 @@ prompt_ryan_main() {
 
   # Status: Was there an error? Am I root? Are there background jobs? Ranger
   # spawned shell?
+  local ERROR_PROMPT_SYM JOB_PROMPT_SYM ROOT_PROMPT_SYM
+  if [ "${NO_MULTIBYTE_PROMPT+1}" == 1 ]; then
+    ERROR_PROMPT_SYM='e'
+    JOB_PROMPT_SYM='r'
+    ROOT_PROMPT_SYM='j'
+  else
+    ERROR_PROMPT_SYM='✘'
+    JOB_PROMPT_SYM='⚡'
+    ROOT_PROMPT_SYM='⚙'
+  fi
+
   prompt_ryan_status() {
     local segment=''
     (( prompt_ryan_retval )) && segment+=' %F{red}✘'
