@@ -77,9 +77,9 @@ prompt_ryan_main() {
 
   prompt_ryan_status() {
     local segment=''
-    (( prompt_ryan_retval )) && segment+=' %F{red}'+"$ERROR_PROMPT_SYM"
-    (( UID == 0 )) && [ -z "$NO_ROOT_STATUSLINE" ] && segment+=' %F{yellow}' + "$ROOT_PROMPT_SYM"
-    (( $(jobs -l | wc -l) )) && segment+=' %F{cyan}' + "$JOB_PROMPT_SYM"
+    (( prompt_ryan_retval )) && segment+=' %F{red}' "$ERROR_PROMPT_SYM"
+    (( UID == 0 )) && [ -z "$NO_ROOT_STATUSLINE" ] && segment+=' %F{yellow}' "$ROOT_PROMPT_SYM"
+    (( $(jobs -l | wc -l) )) && segment+=' %F{cyan}' "$JOB_PROMPT_SYM"
     # if [[ ${USER} != ${DEFAULT_USER} || -n ${SSH_CLIENT} ]]; then
     #    segment+=" %F{%(!.yellow.default)}${USER}@%m"
     # fi
